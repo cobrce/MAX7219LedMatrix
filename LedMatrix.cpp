@@ -96,6 +96,22 @@ void LedMatrix::clear() {
     
 }
 
+void LedMatrix::commit2() {
+    for (byte device = 0;device < myNumberOfDevices;device++)
+    {
+        for (int col = 0;col<8;col++)
+        {
+            byte value = 0;
+            for (int i = 0;i<8;i++)
+            {
+                value= (value << 1) | (cols[device*8+i] >> col) & 1;
+            }
+            sendByte((myNumberOfDevices - device - 1), col+1, value);
+
+        }
+    }
+}
+
 void LedMatrix::commit() {
     for (byte col = 0; col < myNumberOfDevices * 8; col++) {
         sendByte(col / 8, col % 8 + 1, cols[col]);

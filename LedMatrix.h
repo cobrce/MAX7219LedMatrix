@@ -101,6 +101,12 @@ public:
      * Writes the framebuffer to the displays.
      */
     void commit();
+
+    /**
+     * Writes the framebuffer to the displays.
+     * Alternative, for a different hardware
+     */
+    void commit2();
     
     /**
      * Scroll the text to the right.
